@@ -31,7 +31,16 @@ export async function insertNewEmployee(name: string, cpf: string) {
         const collection = db.collection(collectionName);
         const result = await collection.insertOne({
             name: name,
-            cpf: cpf
+            cpf: cpf,
+            monitor1 : {monitor: false},
+            monitor2 : {monitor: false},
+            teclado : {teclado: false},
+            mouse : {mouse: false},
+            acessorio : {acessorio: false},
+            nobreak : {nobreak: false},
+            headset : {headset: false},
+            celular : {celular: false},
+
         })
         return result
     } catch(error) {
@@ -50,8 +59,21 @@ export async function deleteEmployee( cpf: string) {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         const result = await collection.deleteOne({
-            cpf: cpf
+            $and:[
+                {cpf: cpf},
+                { $and: [
+                    { 'monitor1.monitor': false },
+                    { 'monitor2.monitor': false },
+                    { 'teclado.teclado': false },
+                    { 'mouse.mouse': false },
+                    { 'acessorio.acessorio': false },
+                    { 'nobreak.nobreak': false },
+                    { 'headset.headset': false },
+                    { 'celular.celular': false }
+                ]}
+            ]
         })
+        console.log(`Documentos excluídos: ${result.deletedCount}`);
         return result
     } catch(error) {
         console.log("Algo deu errado: ", error)
@@ -68,7 +90,19 @@ export async function findAllEmployees() {
         console.log("Conexao estabelecida");
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
-        const result = await collection.find().toArray()
+        const projection = {
+            "monitor1":false,
+            "monitor2":false,
+            "teclado":false,
+            "mouse":false,
+            "acessorio":false,
+            "nobreak":false,
+            "headset":false,
+            "celular":false,
+        }
+        const result = await collection.find({},{
+            projection: projection
+        }).toArray()
         if(result.length === 0){
             return "Sem funcionários cadastrados no banco de dados"
         }else{
@@ -151,6 +185,31 @@ export async function updateNotebook( cpf: string, notebook: INotebook) {
     }
 }
 
+export async function clearNotebook( cpf: string) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    notebook: {notebook: false}
+                }
+            })
+            if(result.modifiedCount != 0 ){
+                return result
+            }        
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
 export async function updateDesktop( cpf: string, desktop: IDesktop) {
     const client = new MongoClient(uri)
     try {
@@ -185,6 +244,36 @@ export async function updateDesktop( cpf: string, desktop: IDesktop) {
     }
 }
 
+export async function clearDesktop( cpf: string) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    desktop: {
+                        desktop: false
+                    }
+                }
+            })
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar desktop"
+            }
+    } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
 export async function updateMonitor1( cpf: string, monitor: IScreen1) {
     const client = new MongoClient(uri)
     try {
@@ -198,7 +287,7 @@ export async function updateMonitor1( cpf: string, monitor: IScreen1) {
                 cpf: cpf
             },{
                 $set: {
-                    monitor: monitor
+                    monitor1: monitor
                 }
             })
 
@@ -211,6 +300,34 @@ export async function updateMonitor1( cpf: string, monitor: IScreen1) {
             return "Nenhum parametro passado"
         }
 
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
+export async function clearMonitor1( cpf: string) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    monitor1: {monitor: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar monitor 1"
+            }
         } catch(error) {
         console.log("Algo deu errado: ", error)
     } finally {
@@ -232,7 +349,7 @@ export async function updateMonitor2( cpf: string, monitor: IScreen2) {
                 cpf: cpf
             },{
                 $set: {
-                    monitor: monitor
+                    monitor2: monitor
                 }
             })
 
@@ -245,6 +362,34 @@ export async function updateMonitor2( cpf: string, monitor: IScreen2) {
             return "Nenhum parametro passado"
         }
 
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
+export async function clearMonitor2( cpf: string) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    monitor2: {monitor: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar monitor 2"
+            }
         } catch(error) {
         console.log("Algo deu errado: ", error)
     } finally {
@@ -287,6 +432,34 @@ export async function updateTeclado( cpf: string, teclado: ITeclado) {
     }
 }
 
+export async function clearTeclado( cpf: string ) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    teclado: {teclado: false}
+                }
+            })
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar teclado"
+            }
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
 export async function updateMouse( cpf: string, mouse: IMouse) {
     const client = new MongoClient(uri)
     try {
@@ -313,6 +486,35 @@ export async function updateMouse( cpf: string, mouse: IMouse) {
             return "Nenhum parametro passado"
         }
 
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
+export async function clearMouse( cpf: string ) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    mouse: {mouse: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar mouse"
+            }
         } catch(error) {
         console.log("Algo deu errado: ", error)
     } finally {
@@ -355,6 +557,35 @@ export async function updateNobreak( cpf: string, nobreak: INobreak) {
     }
 }
 
+export async function clearNobreak( cpf: string ) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    nobreak: {nobreak: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar nobreak"
+            }
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
 export async function updateHeadset( cpf: string, headset: IHeadset) {
     const client = new MongoClient(uri)
     try {
@@ -381,6 +612,35 @@ export async function updateHeadset( cpf: string, headset: IHeadset) {
             return "Nenhum parametro passado"
         }
 
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
+export async function clearHeadset( cpf: string ) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    headset: {headset: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar headset"
+            }
         } catch(error) {
         console.log("Algo deu errado: ", error)
     } finally {
@@ -423,6 +683,36 @@ export async function updateAcessorios( cpf: string, acessorio: IAcessorios) {
     }
 }
 
+export async function clearAcessorios( cpf: string ) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    acessorio: {acessorio: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar acessório"
+            }
+
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
 export async function updateCelular( cpf: string, celular: ICelular) {
     const client = new MongoClient(uri)
     try {
@@ -449,6 +739,35 @@ export async function updateCelular( cpf: string, celular: ICelular) {
             return "Nenhum parametro passado"
         }
 
+        } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
+export async function clearCelular( cpf: string) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+            const result = await collection.updateOne({
+                cpf: cpf
+            },{
+                $set: {
+                    celular: {celular: false}
+                }
+            })
+
+            if(result.modifiedCount != 0 ){
+                return result
+            }else{
+                return "Erro ao limpar celular"
+            }
         } catch(error) {
         console.log("Algo deu errado: ", error)
     } finally {
