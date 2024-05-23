@@ -47,6 +47,8 @@ export async function deleteEmployee( cpf: string) {
             $and:[
                 {cpf: cpf},
                 { $and: [
+                    { 'notebook.notebook': false },
+                    { 'desktop.desktop': false },
                     { 'monitor1.monitor': false },
                     { 'monitor2.monitor': false },
                     { 'teclado.teclado': false },
