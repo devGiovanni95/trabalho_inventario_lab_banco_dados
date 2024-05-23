@@ -1,13 +1,8 @@
 {
     "openapi":"3.0.0",
     "info":{
-        "title": "API Catálogo de produtos",
-        "description": "This Api have with goal to create, to delete, to updade, to read informations from database MongoDB with teacher Gustuvo",
-        "termsOfService":"http://localhost:3000/terms",
-        "contact":{
-            "name":"Api-Catalogo",
-            "email":"equipe-catalogo@hotmail.com"
-    },
+        "title": "API Inventário de TI",
+        "description": "This Api have with goal to create, to delete, to updade, to read informations from database MongoDB with teacher Gustavo",
     "version":"1.0.0"
     },
     "servers":[

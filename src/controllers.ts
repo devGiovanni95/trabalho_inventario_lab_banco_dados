@@ -15,6 +15,8 @@ export async function insertNewEmployee(name: string, cpf: string) {
         const result = await collection.insertOne({
             name: name,
             cpf: cpf,
+            notebook : {notebook: false},
+            desktop : {desktop: false},
             monitor1 : {monitor: false},
             monitor2 : {monitor: false},
             teclado : {teclado: false},
@@ -207,7 +209,7 @@ export async function clearNotebook( cpf: string) {
                 }
             })
             if(result.modifiedCount != 0 ){
-                return result
+                return "Item do inventário inativado com sucesso"
             }        
         } catch(error) {
         console.log("Algo deu errado: ", error)
@@ -269,7 +271,7 @@ export async function clearDesktop( cpf: string) {
                 }
             })
             if(result.modifiedCount != 0 ){
-                return result
+                return "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar desktop"
             }
@@ -331,7 +333,7 @@ export async function clearMonitor1( cpf: string) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar monitor 1"
             }
@@ -393,7 +395,7 @@ export async function clearMonitor2( cpf: string) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar monitor 2"
             }
@@ -455,7 +457,7 @@ export async function clearTeclado( cpf: string ) {
                 }
             })
             if(result.modifiedCount != 0 ){
-                return result
+                return  "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar teclado"
             }
@@ -518,7 +520,7 @@ export async function clearMouse( cpf: string ) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return  "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar mouse"
             }
@@ -581,7 +583,7 @@ export async function clearNobreak( cpf: string ) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return  "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar nobreak"
             }
@@ -644,7 +646,7 @@ export async function clearHeadset( cpf: string ) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return  "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar headset"
             }
@@ -707,7 +709,7 @@ export async function clearAcessorios( cpf: string ) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return  "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar acessório"
             }
@@ -771,7 +773,7 @@ export async function clearCelular( cpf: string) {
             })
 
             if(result.modifiedCount != 0 ){
-                return result
+                return  "Item do inventário inativado com sucesso"
             }else{
                 return "Erro ao limpar celular"
             }
