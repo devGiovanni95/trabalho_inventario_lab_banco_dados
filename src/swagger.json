@@ -1,0 +1,1018 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title": "API Catálogo de produtos",
+        "description": "This Api have with goal to create, to delete, to updade, to read informations from database MongoDB with teacher Gustuvo",
+        "termsOfService":"http://localhost:3000/terms",
+        "contact":{
+            "name":"Api-Catalogo",
+            "email":"equipe-catalogo@hotmail.com"
+    },
+    "version":"1.0.0"
+    },
+    "servers":[
+        {"url":"http://localhost:3000","description":"Api for run local"}
+    ],
+    "paths":{  
+        "/employees":{
+            "get":{
+                "tags":["Funcionário"],
+                "summary":"Find all employees",
+                "description": "Responsible for to find all employees in database",
+                "responses": {
+                    "201":{
+                        "description": "Ok",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"                                                      
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/employee":{
+            "post":{
+                "tags":["Funcionário"],
+                "summary":"Create a new employee",
+                "description": "Responsible for to create a new employee in database",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "employee": {
+                                    "value": {
+                                        "name":"Giovanni Santos",
+                                        "cpf":"123.456.123-18"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201":{
+                        "description": "Ok",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"                                                      
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/employee/{cpf}":{
+            "delete":{ 
+                "description": "Responsible for to delete a employee in database",
+                "summary":"Delete a employee by cpf",
+                "tags":["Funcionário"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{                              
+                              
+                            }
+                        }
+                    }
+                }
+            },
+
+            "get":{
+                "tags":["Inventário"],
+                "summary":"Find inventory by employees",
+                "description": "Responsible for to find all inventory employees in database",
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201":{
+                        "description": "Ok",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"                                                      
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "put":{
+                "description": "Responsible for update a name the employee in database by cpf",
+                "summary":"Update a employee by cpf",
+                "tags":["Funcionário"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "name": {
+                                    "value": {
+                                        "name": "Diego lopes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/notebook/{cpf}":{
+            "put":{
+                "description": "Responsible for update a notebook the employee in database by cpf",
+                "summary":"Update a employee by cpf",
+                "tags":["Notebook"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "notebook": {
+                                    "value": {
+                                        "notebook": {	
+                                            "notebook": true,
+                                            "tag": "XYZ1234",
+                                            "modelo": "ACER",
+                                            "numero_serie": "76178231T812",
+                                            "versao": "WINDOWS 11 PRO",
+                                            "caracteristicas": "Intel i7 16GB RAM 512GB SSD 14",
+                                            "observacao": "Possui riscos na tela"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_notebook/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a notebook the employee in database by cpf",
+                "summary":"Update a Notebook the employee by cpf",
+                "tags":["Notebook"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            }  
+                            ,
+                            "examples": {
+                                "notebook": {
+                                    "value": {
+                                        
+                                    }
+                                }   
+                            }                         
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/desktop/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Desktop"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "desktop": {
+                                    "value": {
+                                        "desktop": {	
+                                            "desktop": false,
+                                            "tag": "XYZ1238",
+                                            "modelo": "Acer",
+                                            "numero_serie": "76178231T813",
+                                            "versao": "WINDOWS 10 PRO",
+                                            "caracteristicas": "Intel i5 16GB RAM 512GB SSD 14",
+                                            "observacao": "Novo"
+                                    }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_desktop/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Desktop"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "desktop":{
+                                    "value":{}
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/monitor1/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Monitor 1"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "monitor": {
+                                    "value": {   
+                                        "monitor": {                                     
+                                            "monitor": true,
+                                            "modelo": "Monitor ABC123",
+                                            "numero_serie": "123456789",
+                                            "observacao": "Monitor em boas condições"                                        
+                                      }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_monitor1/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Monitor 1"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/monitor2/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Monitor 2"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "monitor": {
+                                    "value": {
+                                        "monitor": {
+                                          "monitor": true,
+                                          "modelo": "Monitor ABC123",
+                                          "numero_serie": "123456789",
+                                          "observacao": "Monitor em boas condições"
+                                        }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_monitor2/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Monitor 2"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/teclado/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Teclado"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "teclado": {
+                                    "value": {
+                                        "teclado": {
+                                            "teclado": true,
+                                            "modelo": "Teclado XYZ789",
+                                            "numero_serie": "987654321",
+                                            "observacao": "Teclado com teclas extras"
+                                          }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_teclado/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Teclado"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/mouse/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Mouse"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "mouse": {
+                                    "value": {
+                                        "mouse": {
+                                            "mouse": true,
+                                            "modelo": "Mouse QWERTY456",
+                                            "numero_serie": "456123789",
+                                            "observacao": "Mouse com luzes RGB"
+                                          }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_mouse/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Mouse"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/acessorios/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Acessórios"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "acessorios": {
+                                    "value": {
+                                        "acessorios": {
+                                            "acessorios": true,
+                                            "suporte_notebook": true,
+                                            "mouse_pad": "MousePad ABC",
+                                            "observacao": "Suporte e mouse pad incluídos"
+                                          }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_acessorios/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Acessórios"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/nobreak/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Nobreak"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "nobreak": {
+                                    "value": {
+                                        "nobreak": {
+                                            "nobreak": true,
+                                            "modelo": "Nobreak 1234",
+                                            "numero_serie": "789456123",
+                                            "observacao": "Nobreak em perfeito estado"
+                                          }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_nobreak/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Nobreak"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/headset/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Headset"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "headset": {
+                                    "value": {
+                                        "headset": {
+                                            "headset": true,
+                                            "modelo": "Headset XYZ789",
+                                            "numero_serie": "456789123",
+                                            "observacao": "Headset com microfone embutido"
+                                          }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_headset/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Headset"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/celular/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Celular"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],   
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/Employee"
+                            },
+                            "examples": {
+                                "celular": {
+                                    "value": {
+                                        "celular": {
+                                            "celular": true,
+                                            "modelo": "Celular ABC123",
+                                            "imei": "012345678901234",
+                                            "numero": "987654321",
+                                            "observacao": "Celular com tela quebrada"
+                                          }
+                                      }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        },
+
+        "/clear_celular/{cpf}":{
+            "put":{
+                "description": "Responsible for clear a desktop the employee in database by cpf",
+                "summary":"Update a Desktop theemployee by cpf",
+                "tags":["Celular"],
+                "parameters": [
+                    {
+                        "name":"cpf",
+                        "in":"path",
+                        "description": "CPF the employee for query",
+                        "required": true
+                    }
+                ],  
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            
+                            }
+                        }
+                    }
+                }             
+            }
+        }
+
+    }
+}

@@ -1,13 +1,21 @@
 import  express, { json, response }  from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import { clearAcessorios, clearCelular, clearDesktop, clearHeadset, clearMonitor1, clearMonitor2, clearMouse, clearNobreak, clearNotebook, clearTeclado, deleteEmployee, findAllEmployees, findAndUpdateByIdEmployee, insertNewEmployee, updateAcessorios, updateCelular, updateDesktop, updateHeadset, updateMonitor1, updateMonitor2, updateMouse, updateNobreak, updateNotebook, updateTeclado } from './src/controllers'
+import { clearAcessorios, clearCelular, clearDesktop, clearHeadset, clearMonitor1, clearMonitor2, clearMouse, clearNobreak, clearNotebook, clearTeclado, deleteEmployee, findAllEmployees, findAndUpdateByIdEmployee, findInventoryByEmployee, insertNewEmployee, updateAcessorios, updateCelular, updateDesktop, updateHeadset, updateMonitor1, updateMonitor2, updateMouse, updateNobreak, updateNotebook, updateTeclado } from './controllers'
+import swagger from 'swagger-ui-express'
+import swaggerDocs from './swagger.json'
 dotenv.config()
 const app = express()
-const port = 3008
+const port = 3000
 
-app.use(cors())
+app.use(cors({origin:'*'}))
 app.use(express.json())
+
+app.use('/api-docs', swagger.serve, swagger.setup(swaggerDocs))
+//rota do swagger 
+// app.get('/swagger', (request, response) => {
+//     return response.sendFile(process.cwd() + "/src/swagger.json")
+// })
 
 app.post(`/employee`,async (req, res) => {
     const { name, cpf } = req.body;
@@ -35,12 +43,22 @@ app.delete(`/employee/:cpf`,async (req, res) => {
     }
 })
 
-app.get(`/employees`,async (req, res) => {
+app.get(`/employees`, async (req, res) => {
     try {
         const result = await findAllEmployees()
             res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: 'Erro ao inserir funcionário', error: error });
+    }
+})
+
+app.get(`/employee/:cpf`, async (req, res) => {
+    try {
+        const {cpf} = req.params
+        const result = await findInventoryByEmployee(cpf)
+            res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao procurar funcionário', error: error });
     }
 })
 

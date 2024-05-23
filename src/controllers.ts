@@ -5,23 +5,6 @@ const uri = "mongodb://localhost:27017/"
 const collectionName = 'ti'
 const dbName = 'inventario'
 
-// export async function connectAndFindWithPagination(skip: number) {
-//     const client = new MongoClient(uri)
-//     try {
-//         await client.connect();
-//         console.log("Conexao estabelecida");
-//         const db = client.db(dbName);
-//         const collection = db.collection(collectionName);
-//         const result = await collection.find({}).skip(skip).limit(10).toArray()
-//         return result
-//     } catch(error) {
-//         console.log("Algo deu errado: ", error)
-//     } finally {
-//         await client.close();
-//         console.log("Conexao fechada");
-//     }
-// }
-
 export async function insertNewEmployee(name: string, cpf: string) {
     const client = new MongoClient(uri)
     try {
@@ -83,6 +66,28 @@ export async function deleteEmployee( cpf: string) {
     }
 }
 
+export async function findInventoryByEmployee( cpf: string ) {
+    const client = new MongoClient(uri)
+    try {
+        await client.connect();
+        console.log("Conexao estabelecida");
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        const result = await collection.find({cpf},{
+        }).toArray()
+        if(result.length === 0){
+            return "Sem funcionários cadastrados no banco de dados"
+        }else{
+            return result
+        }
+    } catch(error) {
+        console.log("Algo deu errado: ", error)
+    } finally {
+        await client.close();
+        console.log("Conexao fechada");
+    }
+}
+
 export async function findAllEmployees() {
     const client = new MongoClient(uri)
     try {
@@ -91,6 +96,8 @@ export async function findAllEmployees() {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         const projection = {
+            "desktop":false,
+            "notebook":false,
             "monitor1":false,
             "monitor2":false,
             "teclado":false,
