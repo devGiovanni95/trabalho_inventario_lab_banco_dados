@@ -12,10 +12,6 @@ app.use(cors({origin:'*'}))
 app.use(express.json())
 
 app.use('/api-docs', swagger.serve, swagger.setup(swaggerDocs))
-//rota do swagger 
-// app.get('/swagger', (request, response) => {
-//     return response.sendFile(process.cwd() + "/src/swagger.json")
-// })
 
 app.post(`/employee`,async (req, res) => {
     const { name, cpf } = req.body;

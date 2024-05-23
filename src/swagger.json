@@ -20,8 +20,7 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"                                                      
+                                    "type": "object"
                                 }
                             }
                         }
@@ -39,7 +38,6 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
                             },
                             "examples": {
                                 "employee": {
@@ -58,8 +56,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"                                                      
+                                    "type": "object"
+                                                                                          
                                 }
                             }
                         }
@@ -111,8 +109,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"                                                      
+                                    "type": "object"
+                                                                                          
                                 }
                             }
                         }
@@ -136,7 +134,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "name": {
@@ -154,8 +152,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -182,7 +180,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "notebook": {
@@ -208,8 +206,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -236,7 +234,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             }  
                             ,
                             "examples": {
@@ -255,8 +253,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             }
                         }
@@ -282,7 +280,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "desktop": {
@@ -308,8 +306,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -336,7 +334,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "desktop":{
@@ -352,8 +350,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -380,7 +378,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "monitor": {
@@ -403,8 +401,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -433,8 +431,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -461,7 +459,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "monitor": {
@@ -484,8 +482,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -514,8 +512,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -542,7 +540,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "teclado": {
@@ -565,8 +563,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -595,8 +593,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -623,7 +621,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "mouse": {
@@ -646,8 +644,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -676,8 +674,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -704,7 +702,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "acessorios": {
@@ -727,8 +725,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -757,8 +755,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -785,7 +783,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "nobreak": {
@@ -808,8 +806,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -838,8 +836,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -866,7 +864,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "headset": {
@@ -889,8 +887,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -919,8 +917,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
@@ -947,7 +945,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "$ref": "#/components/schemas/Employee"
+                                
                             },
                             "examples": {
                                 "celular": {
@@ -998,8 +996,8 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Employee"
+                                    "type": "object"
+                                    
                                 }
                             
                             }
